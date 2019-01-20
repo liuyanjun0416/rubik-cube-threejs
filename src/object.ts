@@ -8,35 +8,19 @@ enum axisColor {
   z = 0x0000ff
 }
 
-export function initXaxis() {
-  const xmaterial = new LineBasicMaterial({ color: axisColor.x });
-  const xgeo = new Geometry();
-  xgeo.vertices.push(ORIGPOINT, new Vector3(300, 0, 0));
-  const xaxis = new Line(xgeo, xmaterial);
-  return xaxis;
-}
-
-export function initYaxis() {
-  const xmaterial = new LineBasicMaterial({ color: axisColor.y });
-  const xgeo = new Geometry();
-  xgeo.vertices.push(ORIGPOINT, new Vector3(0, 300, 0));
-  const xaxis = new Line(xgeo, xmaterial);
-  return xaxis;
-}
-
-export function initZaxis() {
-  const xmaterial = new LineBasicMaterial({ color: axisColor.z });
-  const xgeo = new Geometry();
-  xgeo.vertices.push(ORIGPOINT, new Vector3(0, 0, 300));
-  const xaxis = new Line(xgeo, xmaterial);
+export function initAxis(color:number,point:Vector3) {
+  const material = new LineBasicMaterial({ color: color });
+  const geo = new Geometry();
+  geo.vertices.push(ORIGPOINT, point);
+  const xaxis = new Line(geo, material);
   return xaxis;
 }
 
 export default function initObject() {
   const objects = {
-    xaxis: initXaxis(),
-    yaxis: initYaxis(),
-    zaxis: initZaxis()
+    xaxis: initAxis(axisColor.x,new Vector3(300,0,0)),
+    yaxis: initAxis(axisColor.y,new Vector3(0,300,0)),
+    zaxis: initAxis(axisColor.z,new Vector3(0,0,300))
   };
   Object.keys(objects).forEach(k => {
     scene.add(objects[k]);
