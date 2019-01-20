@@ -1,8 +1,7 @@
 import renderer from "./renderer";
-import scene from './scene';
-import camera from './camera';
-import init from './init';
-
+import scene from "./scene";
+import camera from "./camera";
+import init from "./init";
 
 window.onload = function() {
   init();

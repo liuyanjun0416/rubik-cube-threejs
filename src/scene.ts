@@ -1,9 +1,8 @@
-import { Scene } from 'three';
+import { Scene } from "three";
 
-
-const scene = (function initScene(){
-    const scene = new Scene();
-    return scene;
+const scene = (function initScene() {
+  const scene = new Scene();
+  return scene;
 })();
 
 export default scene;
