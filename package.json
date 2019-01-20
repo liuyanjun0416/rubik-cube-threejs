@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/liuyanjun0416/rubik-cube-threejs#readme",
   "dependencies": {
+    "@types/parcel-env": "0.0.0",
     "@types/three": "^0.93.15",
     "parcel-bundler": "^1.11.0",
     "three": "^0.100.0"

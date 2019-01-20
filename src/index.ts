@@ -13,3 +13,9 @@ function render() {
   renderer.render(scene, camera);
   window.requestAnimationFrame(render);
 }
+
+if (module.hot) {
+  module.hot.accept(function() {
+    window.location.reload();
+  })
+}
