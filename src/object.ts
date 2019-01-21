@@ -3,12 +3,18 @@ import {
   BoxGeometry,
   Mesh,
   FaceColors,
-  MeshBasicMaterial
+  MeshBasicMaterial,
+  BoxHelper,
+  Color
 } from "three";
 import scene from "./scene";
 
 const cubeParams = {
-  lenth: 50
+  length: 50
+};
+
+const pockerCubeConfig = {
+  num: 2
 };
 
 const colorCodes = {
@@ -32,26 +38,49 @@ export function initAxis() {
 }
 
 export function initCube() {
-  const cubeGeometry = new BoxGeometry(
-    cubeParams.lenth,
-    cubeParams.lenth,
-    cubeParams.lenth
-  );
+  const len = cubeParams.length;
+  const cubeGeometry = new BoxGeometry(len, len, len);
 
   let mats: MeshBasicMaterial[] = [];
 
-  Array(6).fill(0).map((face, i) => {
-    const material = new MeshBasicMaterial({
-      color: colorCodes[faceColor[i]],
-      vertexColors: FaceColors
+  Array(6)
+    .fill(0)
+    .forEach((face, i) => {
+      const material = new MeshBasicMaterial({
+        color: colorCodes[faceColor[i]],
+        vertexColors: FaceColors
+      });
+      mats.push(material);
     });
-    mats.push(material);
-  });
   const cube = new Mesh(cubeGeometry, mats);
   return cube;
 }
 
+
+export function initPocketCube() {
+  let cubes = [];
+  let borders = [];
+  const num = pockerCubeConfig.num;
+  const len = cubeParams.length;
+  for (let i = 0; i < num; i++) {
+    for (var j = 0; j < num * num; j++) {
+      const cube = initCube();
+      cube.position.x = - len / 2 + (j % 2 * len)
+      cube.position.y = -len / 2 + Math.floor(j / 2) * len
+      cube.position.z = len / 2 - i * len
+      cubes.push(cube);
+      const border = new BoxHelper(cube, new Color(0x000000));
+      borders.push(border);
+    }
+  }
+  return {cubes,borders};
+}
+
 export default function initObject() {
   scene.add(initAxis());
-  scene.add(initCube());
+  const pocketCube = initPocketCube();
+  pocketCube.cubes.forEach((cubes,i) => {
+    scene.add(cubes);
+    scene.add(pocketCube.borders[i]);
+  })
 }
