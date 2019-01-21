@@ -1,5 +1,6 @@
 dist
 .cache
+.history
 # Logs
 logs
 *.log

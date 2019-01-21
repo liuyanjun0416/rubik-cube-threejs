@@ -23,7 +23,9 @@
     "@types/parcel-env": "0.0.0",
     "@types/three": "^0.93.15",
     "parcel-bundler": "^1.11.0",
-    "three": "^0.100.0"
+    "three": "^0.100.0",
+    "three-orbit-controls": "^82.1.0",
+    "three-orbitcontrols-ts": "^0.1.2"
   },
   "devDependencies": {
     "typescript": "^3.2.4"
