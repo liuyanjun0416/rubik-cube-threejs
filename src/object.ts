@@ -13,8 +13,8 @@ const cubeParams = {
   length: 50
 };
 
-const pockerCubeConfig = {
-  num: 2
+const cubeConfig = {
+  num: 6
 };
 
 const colorCodes = {
@@ -56,18 +56,17 @@ export function initCube() {
   return cube;
 }
 
-export function initPocketCube() {
+export function initRubikCube(num:number) {
   let cubes = [];
   let borders = [];
-  const num = pockerCubeConfig.num;
   const len = cubeParams.length;
   for (let x = 0; x < num; x++) {
     for (let y = 0; y < num; y++) {
       for (let z = 0; z < num; z++) {
         const cube = initCube();
-        cube.position.x = (x - 0.5) * len;
-        cube.position.y = (y - 0.5) * len;
-        cube.position.z = (z - 0.5) * len;
+        cube.position.x = (x - (num/2 - 0.5)) * len;
+        cube.position.y = (y - (num/2 - 0.5)) * len;
+        cube.position.z = (z - (num/2 - 0.5)) * len;
         cubes.push(cube);
         const border = new BoxHelper(cube, new Color(0x000000));
         borders.push(border);
@@ -79,7 +78,7 @@ export function initPocketCube() {
 
 export default function initObject() {
   scene.add(initAxis());
-  const pocketCube = initPocketCube();
+  const pocketCube = initRubikCube(cubeConfig.num);
   pocketCube.cubes.forEach((cubes, i) => {
     scene.add(cubes);
     scene.add(pocketCube.borders[i]);
