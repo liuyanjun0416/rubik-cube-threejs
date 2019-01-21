@@ -4,6 +4,6 @@ export const WIDTH = window.innerWidth;
 
 export const HEIGHT = window.innerHeight;
 
-export const BGCOLOR = 0xffffff;
+export const BGCOLOR = 0xEEEEEE;
 
 export const ORIGPOINT = new Vector3(0, 0, 0);

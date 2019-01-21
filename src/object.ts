@@ -18,11 +18,11 @@ const pockerCubeConfig = {
 };
 
 const colorCodes = {
-  R: 0xff0000,
-  G: 0x008000,
-  Y: 0xffff00,
-  O: 0xffa500,
-  B: 0x0000ff,
+  R: 0xd92b2c,
+  G: 0x26b143,
+  Y: 0xe6e621,
+  O: 0xff7800,
+  B: 0x2f55cf,
   W: 0xffffff,
   P: 0xffc0cb, //pink
   Pu: 0x9400d3, //紫色
@@ -56,31 +56,32 @@ export function initCube() {
   return cube;
 }
 
-
 export function initPocketCube() {
   let cubes = [];
   let borders = [];
   const num = pockerCubeConfig.num;
   const len = cubeParams.length;
-  for (let i = 0; i < num; i++) {
-    for (var j = 0; j < num * num; j++) {
-      const cube = initCube();
-      cube.position.x = - len / 2 + (j % 2 * len)
-      cube.position.y = -len / 2 + Math.floor(j / 2) * len
-      cube.position.z = len / 2 - i * len
-      cubes.push(cube);
-      const border = new BoxHelper(cube, new Color(0x000000));
-      borders.push(border);
+  for (let x = 0; x < num; x++) {
+    for (let y = 0; y < num; y++) {
+      for (let z = 0; z < num; z++) {
+        const cube = initCube();
+        cube.position.x = (x - 0.5) * len;
+        cube.position.y = (y - 0.5) * len;
+        cube.position.z = (z - 0.5) * len;
+        cubes.push(cube);
+        const border = new BoxHelper(cube, new Color(0x000000));
+        borders.push(border);
+      }
     }
   }
-  return {cubes,borders};
+  return { cubes, borders };
 }
 
 export default function initObject() {
   scene.add(initAxis());
   const pocketCube = initPocketCube();
-  pocketCube.cubes.forEach((cubes,i) => {
+  pocketCube.cubes.forEach((cubes, i) => {
     scene.add(cubes);
     scene.add(pocketCube.borders[i]);
-  })
+  });
 }
