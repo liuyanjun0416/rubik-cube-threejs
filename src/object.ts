@@ -4,8 +4,9 @@ import {
   Mesh,
   FaceColors,
   MeshBasicMaterial,
-  BoxHelper,
-  Color
+  EdgesGeometry,
+  LineSegments,
+  LineBasicMaterial
 } from "three";
 import scene from "./scene";
 
@@ -14,7 +15,7 @@ const cubeParams = {
 };
 
 const cubeConfig = {
-  num: 6
+  num: 3
 };
 
 const colorCodes = {
@@ -53,12 +54,15 @@ export function initCube() {
       mats.push(material);
     });
   const cube = new Mesh(cubeGeometry, mats);
+  const cubeEdges = new EdgesGeometry(cubeGeometry);
+  const edgesMtl = new LineBasicMaterial({color:0x00000});
+  const cubeLine = new LineSegments(cubeEdges,edgesMtl);
+  cube.add(cubeLine);
   return cube;
 }
 
 export function initRubikCube(num:number) {
   let cubes = [];
-  let borders = [];
   const len = cubeParams.length;
   for (let x = 0; x < num; x++) {
     for (let y = 0; y < num; y++) {
@@ -68,19 +72,17 @@ export function initRubikCube(num:number) {
         cube.position.y = (y - (num/2 - 0.5)) * len;
         cube.position.z = (z - (num/2 - 0.5)) * len;
         cubes.push(cube);
-        const border = new BoxHelper(cube, new Color(0x000000));
-        borders.push(border);
       }
     }
   }
-  return { cubes, borders };
+  return { cubes };
 }
+
+export const cubesObject = initRubikCube(cubeConfig.num);
 
 export default function initObject() {
   scene.add(initAxis());
-  const pocketCube = initRubikCube(cubeConfig.num);
-  pocketCube.cubes.forEach((cubes, i) => {
-    scene.add(cubes);
-    scene.add(pocketCube.borders[i]);
+  cubesObject.cubes.forEach((cube, i) => {
+    scene.add(cube);
   });
 }
