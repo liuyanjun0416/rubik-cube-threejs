@@ -34,6 +34,7 @@ export function rotateAnimation(
     isRotating = false;
   }
   switch (action) {
+    case 'R':
     case "l": {
       filterCube(cubes, action).forEach(cube => {
         rotateAroundAxisX(
@@ -43,25 +44,8 @@ export function rotateAnimation(
       });
       break;
     }
+    case 'r':
     case "L": {
-      filterCube(cubes, action).forEach(cube => {
-        rotateAroundAxisX(
-          cube,
-          (halfCicle * (currentTime - lastTime)) / totalTime
-        );
-      });
-      break;
-    }
-    case "R": {
-      filterCube(cubes, action).forEach(cube => {
-        rotateAroundAxisX(
-          cube,
-          (-halfCicle * (currentTime - lastTime)) / totalTime
-        );
-      });
-      break;
-    }
-    case "r": {
       filterCube(cubes, action).forEach(cube => {
         rotateAroundAxisX(
           cube,
