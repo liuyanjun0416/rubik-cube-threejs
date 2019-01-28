@@ -9,24 +9,40 @@
       .action-container {
         position: absolute;
         z-index: 20;
-        bottom: 100px;
-        left: 200px;
+        bottom: 40px;
+        left: 50%;
+        transform: translate(-50%,0);
         font-size: 50px;
+      }
+      .line {
         display: flex;
       }
-      .action-container div {
+      .line div {
         cursor: pointer;
         width: 100px;
+        text-align: center;
       }
     </style>
   </head>
   <body>
     <div class="main"></div>
     <div class="action-container">
-      <div class="l">L'</div>
-      <div class="L">L</div>
-      <div class="R">R</div>
-      <div class="r">R'</div>
+      <div class="line">
+        <div class="l">L'</div>
+        <div class="L">L</div>
+        <div class="R">R</div>
+        <div class="r">R'</div>
+        <div class="U">U</div>
+        <div class="u">U'</div>
+      </div>
+      <div class="line">
+        <div class="d">D'</div>
+        <div class="D">D</div>
+        <div class="F">F</div>
+        <div class="f">F'</div>
+        <div class="b">B'</div>
+        <div class="B">B</div>
+      </div>
     </div>
     <script src="./src/index.ts"></script>
   </body>
