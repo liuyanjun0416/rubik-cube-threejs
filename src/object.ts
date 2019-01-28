@@ -81,7 +81,7 @@ export function initRubikCube(num:number) {
 export const cubesObject = initRubikCube(cubeConfig.num);
 
 export default function initObject() {
-  scene.add(initAxis());
+  // scene.add(initAxis());
   cubesObject.cubes.forEach((cube, i) => {
     scene.add(cube);
   });

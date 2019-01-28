@@ -23,6 +23,7 @@
     "@types/parcel-env": "0.0.0",
     "@types/three": "^0.93.15",
     "parcel-bundler": "^1.11.0",
+    "sass": "^1.16.1",
     "three": "^0.100.0",
     "three-orbit-controls": "^82.1.0",
     "three-orbitcontrols-ts": "^0.1.2"
