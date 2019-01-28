@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "parcel index.html",
-    "build": "parcel build index.html",
+    "build": "parcel build index.html --public-url ./",
     "watch": "parcel watch index.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy":"gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
     "three-orbitcontrols-ts": "^0.1.2"
   },
   "devDependencies": {
+    "gh-pages": "^2.0.1",
     "typescript": "^3.2.4"
   }
 }
